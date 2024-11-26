@@ -17,10 +17,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from "react"
 import SnackbarComponent from "../components/snackBar"
 import SwitchComponent from "../components/switch"
+import TabContextComponent from "../components/tabContext"
+import TabListComponent from "../components/tabList"
+import TabComponent from "../components/tab"
+import TabPanelComponent from "../components/tabPanel"
 
 const SignIn = () => {
 
     const [isActive, setIsActive] = useState(false);
+    const [value, setValue] = useState('1');
 
     const handleClick =() => {
         setIsActive(true);
@@ -29,6 +34,10 @@ const SignIn = () => {
     const handleClose = () => {
         setIsActive(false);
     }
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
         <div>
@@ -149,6 +158,21 @@ const SignIn = () => {
                     <FormControlLabelComponent control={<SwitchComponent defaultChecked/>} label='TP 2'/>
                     <FormControlLabelComponent control={<SwitchComponent />} label='TP 3'/>
                 </FormGroupComponent>
+            </BoxComponent>
+
+            <BoxComponent sx={{ width: '100%', typography: 'body1', marginTop: 5 }}>
+                <TabContextComponent value={value}>
+                    <BoxComponent sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <TabListComponent onChange={handleChange}>
+                            <TabComponent label='Item 1' value='1' />
+                            <TabComponent label='Item 2' value='2' />
+                            <TabComponent label='Item 3' value='3' />
+                        </TabListComponent>
+                    </BoxComponent>
+                    <TabPanelComponent value='1'>Item 1</TabPanelComponent>
+                    <TabPanelComponent value='2'>Item 2</TabPanelComponent>
+                    <TabPanelComponent value='3'>Item 3</TabPanelComponent>
+                </TabContextComponent>
             </BoxComponent>
         </div>
     )
