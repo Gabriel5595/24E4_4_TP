@@ -9,6 +9,8 @@ import FormControlLabelComponent from "../components/formControlLabel"
 import ContainerComponent from "../components/container"
 import DatePickerComponent from "../components/datePicker"
 import DateTimePickerComponent from "../components/dateTimePicker"
+import FabComponent from "../components/Fab"
+import AddIcon from '@mui/icons-material/Add';
 
 const SignIn = () => {
     return (
@@ -86,6 +88,10 @@ const SignIn = () => {
                     onChange={(value) => {console.log(value.toString())}}
                 />
             </BoxComponent>
+
+            <FabComponent color='grey'>
+                <AddIcon />
+            </FabComponent>
         </div>
     )
 }
