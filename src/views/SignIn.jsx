@@ -11,6 +11,7 @@ import DatePickerComponent from "../components/datePicker"
 import DateTimePickerComponent from "../components/dateTimePicker"
 import FabComponent from "../components/Fab"
 import AddIcon from '@mui/icons-material/Add';
+import GridComponent from "../components/grid"
 
 const SignIn = () => {
     return (
@@ -38,7 +39,7 @@ const SignIn = () => {
                     border: '1px dashed grey',
                 }}
             >
-                    This is a box.
+                    Esta é uma caixa
             </BoxComponent>
 
             <CardComponent 
@@ -92,6 +93,15 @@ const SignIn = () => {
             <FabComponent color='grey'>
                 <AddIcon />
             </FabComponent>
+
+            <BoxComponent sx={{flexGrow: 1}}>
+                <GridComponent container spacing={1}  sx={{border: '1px solid black', justifyContent: 'space-around'}}>
+                    <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 1</GridComponent>
+                    <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 2</GridComponent>
+                    <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 3</GridComponent>
+                </GridComponent>
+            </BoxComponent>
+            
         </div>
     )
 }
