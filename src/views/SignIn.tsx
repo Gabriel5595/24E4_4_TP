@@ -1,3 +1,4 @@
+import AlertComponent from "../components/alert"
 import ButtonComponent from "../components/button"
 
 const SignIn = () => {
@@ -6,6 +7,7 @@ const SignIn = () => {
             <h1>Sign In</h1>
 
             <ButtonComponent>Botão</ButtonComponent>
+            <AlertComponent severity='warning'>Este é um componente Alert</AlertComponent>
         </div>
     )
 }
