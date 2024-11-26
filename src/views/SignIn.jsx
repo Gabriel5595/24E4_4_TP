@@ -21,6 +21,7 @@ import TabContextComponent from "../components/tabContext"
 import TabListComponent from "../components/tabList"
 import TabComponent from "../components/tab"
 import TabPanelComponent from "../components/tabPanel"
+import TextFieldComponent from "../components/textField"
 
 const SignIn = () => {
 
@@ -173,6 +174,14 @@ const SignIn = () => {
                     <TabPanelComponent value='2'>Item 2</TabPanelComponent>
                     <TabPanelComponent value='3'>Item 3</TabPanelComponent>
                 </TabContextComponent>
+            </BoxComponent>
+
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextFieldComponent
+                    id="outlined-basic"
+                    label="TextField funcionando"
+                    variant="outlined"
+                    sx={{margin: 5}}/>
             </BoxComponent>
         </div>
     )
