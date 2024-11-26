@@ -1,7 +1,7 @@
-import { Height } from "@mui/icons-material"
 import AlertComponent from "../components/alert"
 import AvatarComponent from "../components/avatar"
 import ButtonComponent from "../components/button"
+import BoxComponent from "../components/box"
 
 const SignIn = () => {
     return (
@@ -19,9 +19,19 @@ const SignIn = () => {
                     width: 90,
                     height: 90,
                 }}
-
-                
             />
+
+            <BoxComponent
+                component='section'
+                sx={{
+                    p:2,
+                    border: '1px dashed grey',
+                    magin:5
+                }}>
+                    This is a box.
+            </BoxComponent>
+
+            
         </div>
     )
 }
