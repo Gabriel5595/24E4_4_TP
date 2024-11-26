@@ -22,6 +22,7 @@ import TabListComponent from "../components/tabList"
 import TabComponent from "../components/tab"
 import TabPanelComponent from "../components/tabPanel"
 import TextFieldComponent from "../components/textField"
+import TextComponent from "../components/typography"
 
 const SignIn = () => {
 
@@ -44,15 +45,17 @@ const SignIn = () => {
         <div>
             <h1>Sign In</h1>
 
-            <ButtonComponent sx={{marginTop: 5}}>Botão</ButtonComponent>
+            <TextComponent variant='h5'>Button test</TextComponent>
+            <ButtonComponent sx={{marginBottom: 5}}>Botão</ButtonComponent>
 
-            <AlertComponent severity='warning' sx={{marginTop: 5}}>Este é um componente Alert</AlertComponent>
+            <TextComponent variant='h5'>Avatar test</TextComponent>
+            <AlertComponent severity='warning' sx={{marginBottom: 5}}>Este é um componente Alert</AlertComponent>
 
+            <TextComponent variant='h5'>Avatar test</TextComponent>
             <AvatarComponent 
                 alt='Master Chief' 
                 src='https://imgcdn.stablediffusionweb.com/2024/5/25/092519db-ab58-4ae2-9954-526e1626d629.jpg' 
                 sx={{
-                    margin: 5,
                     width: 90,
                     height: 90,
                 }}
@@ -66,6 +69,7 @@ const SignIn = () => {
                     marginTop: 5
                 }}
             >
+                <TextComponent variant='h5'>Box test</TextComponent>
                     Esta é uma caixa
             </BoxComponent>
 
@@ -76,11 +80,12 @@ const SignIn = () => {
                     maxWidth: 300,
                     height: 200
                 }}
-            >
+            >   <TextComponent variant='h5'>Card test</TextComponent>
                 Este é um cartão
             </CardComponent>
             
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>Checkbox test</TextComponent>
                 <FormGroupComponent>
                     <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 1'/>
                     <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 2'/>
@@ -89,6 +94,7 @@ const SignIn = () => {
             </BoxComponent>
 
             <ContainerComponent maxWidth='sm' sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>Box test</TextComponent>
                 <BoxComponent sx={{bgcolor: 'black', height: '200px', width: '200px'}}/>
             </ContainerComponent>
 
@@ -100,6 +106,7 @@ const SignIn = () => {
                     marginTop: 5
                 }}
             >
+                <TextComponent variant='h5'>DatePicker test</TextComponent>
                 <DatePickerComponent
                     format="DD/MM/YYYY"
                     onChange={(value) => {console.log(value.toString())}}
@@ -113,6 +120,7 @@ const SignIn = () => {
                     border: '1px dashed grey',
                 }}
             >
+                <TextComponent variant='h5'>DateTimePicker test</TextComponent>
                 <DateTimePickerComponent 
                     ampm={false}
                     format="DD/MM/YYYY HH:mm"
@@ -121,6 +129,7 @@ const SignIn = () => {
             </BoxComponent>
 
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>Fab test</TextComponent>
                 <FabComponent color='grey'>
                     <AddIcon />
                 </FabComponent>
@@ -128,6 +137,7 @@ const SignIn = () => {
             
 
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>Grid test</TextComponent>
                 <GridComponent container spacing={1}  sx={{border: '1px solid black', justifyContent: 'space-around'}}>
                     <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 1</GridComponent>
                     <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 2</GridComponent>
@@ -137,6 +147,7 @@ const SignIn = () => {
             
             
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>IconButton test</TextComponent>
                 <IconButtonComponent>
                     <DeleteIcon />
                 </IconButtonComponent>
@@ -144,6 +155,7 @@ const SignIn = () => {
             
 
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>Snackbar test</TextComponent>
                 <ButtonComponent onClick={handleClick}>Ativar Snackbar</ButtonComponent>
                 <SnackbarComponent 
                     open={isActive}
@@ -154,6 +166,7 @@ const SignIn = () => {
             </BoxComponent>
 
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>Switch test</TextComponent>
                 <FormGroupComponent>
                     <FormControlLabelComponent control={<SwitchComponent defaultChecked/>} label='TP 1'/>
                     <FormControlLabelComponent control={<SwitchComponent defaultChecked/>} label='TP 2'/>
@@ -162,6 +175,7 @@ const SignIn = () => {
             </BoxComponent>
 
             <BoxComponent sx={{ width: '100%', typography: 'body1', marginTop: 5 }}>
+                <TextComponent variant='h5'>Tab test</TextComponent>
                 <TabContextComponent value={value}>
                     <BoxComponent sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabListComponent onChange={handleChange}>
@@ -176,7 +190,9 @@ const SignIn = () => {
                 </TabContextComponent>
             </BoxComponent>
 
+            
             <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <TextComponent variant='h5'>TextField test</TextComponent>
                 <TextFieldComponent
                     id="outlined-basic"
                     label="TextField funcionando"
