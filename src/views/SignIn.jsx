@@ -7,6 +7,8 @@ import CheckboxComponent from "../components/checkbox"
 import FormGroupComponent from "../components/formGroup"
 import FormControlLabelComponent from "../components/formControlLabel"
 import ContainerComponent from "../components/container"
+import DatePickerComponent from "../components/datePicker"
+import DateTimePickerComponent from "../components/dateTimePicker"
 
 const SignIn = () => {
     return (
@@ -32,7 +34,8 @@ const SignIn = () => {
                 sx={{
                     p:2,
                     border: '1px dashed grey',
-                }}>
+                }}
+            >
                     This is a box.
             </BoxComponent>
 
@@ -56,6 +59,33 @@ const SignIn = () => {
             <ContainerComponent maxWidth='sm'>
                 <BoxComponent sx={{bgcolor: 'black', height: '200px', width: '200px'}}/>
             </ContainerComponent>
+
+            <BoxComponent 
+                component='section'
+                sx={{
+                    p:2,
+                    border: '1px dashed grey',
+                }}
+            >
+                <DatePickerComponent
+                    format="DD/MM/YYYY"
+                    onChange={(value) => {console.log(value.toString())}}
+                />
+            </BoxComponent>
+
+            <BoxComponent 
+                component='section'
+                sx={{
+                    p:2,
+                    border: '1px dashed grey',
+                }}
+            >
+                <DateTimePickerComponent 
+                    ampm={false}
+                    format="DD/MM/YYYY HH:mm"
+                    onChange={(value) => {console.log(value.toString())}}
+                />
+            </BoxComponent>
         </div>
     )
 }
