@@ -9,9 +9,11 @@ import FormControlLabelComponent from "../components/formControlLabel"
 import ContainerComponent from "../components/container"
 import DatePickerComponent from "../components/datePicker"
 import DateTimePickerComponent from "../components/dateTimePicker"
-import FabComponent from "../components/Fab"
+import FabComponent from "../components/fab"
 import AddIcon from '@mui/icons-material/Add';
 import GridComponent from "../components/grid"
+import IconButtonComponent from "../components/iconButton"
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const SignIn = () => {
     return (
@@ -102,6 +104,10 @@ const SignIn = () => {
                 </GridComponent>
             </BoxComponent>
             
+
+            <IconButtonComponent>
+                <DeleteIcon />
+            </IconButtonComponent>
         </div>
     )
 }
