@@ -14,15 +14,28 @@ import AddIcon from '@mui/icons-material/Add';
 import GridComponent from "../components/grid"
 import IconButtonComponent from "../components/iconButton"
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from "react"
+import SnackbarComponent from "../components/snackBar"
 
 const SignIn = () => {
+
+    const [isActive, setIsActive] = useState(false);
+
+    const handleClick =() => {
+        setIsActive(true);
+    };
+
+    const handleClose = () => {
+        setIsActive(false);
+    }
+
     return (
         <div>
             <h1>Sign In</h1>
 
-            <ButtonComponent>Botão</ButtonComponent>
+            <ButtonComponent sx={{marginTop: 5}}>Botão</ButtonComponent>
 
-            <AlertComponent severity='warning'>Este é um componente Alert</AlertComponent>
+            <AlertComponent severity='warning' sx={{marginTop: 5}}>Este é um componente Alert</AlertComponent>
 
             <AvatarComponent 
                 alt='Master Chief' 
@@ -39,6 +52,7 @@ const SignIn = () => {
                 sx={{
                     p:2,
                     border: '1px dashed grey',
+                    marginTop: 5
                 }}
             >
                     Esta é uma caixa
@@ -47,21 +61,23 @@ const SignIn = () => {
             <CardComponent 
                 variant='outlined'
                 sx={{
-                    margin: 10,
+                    margin: 5,
                     maxWidth: 300,
                     height: 200
                 }}
             >
                 Este é um cartão
             </CardComponent>
+            
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <FormGroupComponent>
+                    <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 1'/>
+                    <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 2'/>
+                    <FormControlLabelComponent control={<CheckboxComponent />} label='TP 3'/>
+                </FormGroupComponent>
+            </BoxComponent>
 
-            <FormGroupComponent>
-                <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 1'/>
-                <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 2'/>
-                <FormControlLabelComponent control={<CheckboxComponent />} label='TP 3'/>
-            </FormGroupComponent>
-
-            <ContainerComponent maxWidth='sm'>
+            <ContainerComponent maxWidth='sm' sx={{flexGrow: 1, marginTop: 5}}>
                 <BoxComponent sx={{bgcolor: 'black', height: '200px', width: '200px'}}/>
             </ContainerComponent>
 
@@ -70,6 +86,7 @@ const SignIn = () => {
                 sx={{
                     p:2,
                     border: '1px dashed grey',
+                    marginTop: 5
                 }}
             >
                 <DatePickerComponent
@@ -92,11 +109,14 @@ const SignIn = () => {
                 />
             </BoxComponent>
 
-            <FabComponent color='grey'>
-                <AddIcon />
-            </FabComponent>
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <FabComponent color='grey'>
+                    <AddIcon />
+                </FabComponent>
+            </BoxComponent>
+            
 
-            <BoxComponent sx={{flexGrow: 1}}>
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
                 <GridComponent container spacing={1}  sx={{border: '1px solid black', justifyContent: 'space-around'}}>
                     <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 1</GridComponent>
                     <GridComponent size={3} sx={{border: '1px solid black', margin: 2}}>Item 2</GridComponent>
@@ -104,10 +124,23 @@ const SignIn = () => {
                 </GridComponent>
             </BoxComponent>
             
+            
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <IconButtonComponent>
+                    <DeleteIcon />
+                </IconButtonComponent>
+            </BoxComponent>
+            
 
-            <IconButtonComponent>
-                <DeleteIcon />
-            </IconButtonComponent>
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <ButtonComponent onClick={handleClick}>Ativar Snackbar</ButtonComponent>
+                <SnackbarComponent 
+                    open={isActive}
+                    onClose={handleClose}
+                    message={'O snackbar está funcionando!'}
+                    autoHideDuration={5000}
+                />
+            </BoxComponent>
         </div>
     )
 }
