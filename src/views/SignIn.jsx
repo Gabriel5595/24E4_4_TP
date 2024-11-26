@@ -6,6 +6,7 @@ import CardComponent from "../components/card"
 import CheckboxComponent from "../components/checkbox"
 import FormGroupComponent from "../components/formGroup"
 import FormControlLabelComponent from "../components/formControlLabel"
+import ContainerComponent from "../components/container"
 
 const SignIn = () => {
     return (
@@ -51,6 +52,10 @@ const SignIn = () => {
                 <FormControlLabelComponent control={<CheckboxComponent defaultChecked/>} label='TP 2'/>
                 <FormControlLabelComponent control={<CheckboxComponent />} label='TP 3'/>
             </FormGroupComponent>
+
+            <ContainerComponent maxWidth='sm'>
+                <BoxComponent sx={{bgcolor: 'black', height: '200px', width: '200px'}}/>
+            </ContainerComponent>
         </div>
     )
 }
