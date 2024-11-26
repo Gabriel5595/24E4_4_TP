@@ -16,6 +16,7 @@ import IconButtonComponent from "../components/iconButton"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from "react"
 import SnackbarComponent from "../components/snackBar"
+import SwitchComponent from "../components/switch"
 
 const SignIn = () => {
 
@@ -140,6 +141,14 @@ const SignIn = () => {
                     message={'O snackbar está funcionando!'}
                     autoHideDuration={5000}
                 />
+            </BoxComponent>
+
+            <BoxComponent sx={{flexGrow: 1, marginTop: 5}}>
+                <FormGroupComponent>
+                    <FormControlLabelComponent control={<SwitchComponent defaultChecked/>} label='TP 1'/>
+                    <FormControlLabelComponent control={<SwitchComponent defaultChecked/>} label='TP 2'/>
+                    <FormControlLabelComponent control={<SwitchComponent />} label='TP 3'/>
+                </FormGroupComponent>
             </BoxComponent>
         </div>
     )
