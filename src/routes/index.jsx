@@ -19,7 +19,7 @@ const route = createBrowserRouter(
                 <Route path='form' element={ <Form /> } loader={() => handleVerificationProtected()}/>
             </Route>
             <Route path='signin' element={ <SignIn /> } loader={() => isAuthenticated()}/>
-            <Route path='signun' element={ <SignUp /> } loader={() => isAuthenticated()}/>
+            <Route path='signup' element={ <SignUp /> } loader={() => isAuthenticated()}/>
         </Route>
     )
 );

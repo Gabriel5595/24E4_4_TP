@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ContainerComponent from "../components/container";
 import TypographyComponent from "../components/typography";
 import TextFieldComponent from "../components/textField";
@@ -5,6 +6,8 @@ import ButtonComponent from "../components/button";
 import BoxComponent from "../components/box";
 
 const SignIn = () => {
+    const navigate = useNavigate();
+
     return (
         <ContainerComponent
             maxWidth="xs"
@@ -17,7 +20,7 @@ const SignIn = () => {
             }}
         >
             <TypographyComponent variant="h4" style={{ marginBottom: "20px" }}>
-                Sign In
+                Login
             </TypographyComponent>
 
             <BoxComponent
@@ -30,7 +33,7 @@ const SignIn = () => {
             >
                 <TextFieldComponent label="Email" variant="outlined" fullWidth />
                 <TextFieldComponent
-                    label="Password"
+                    label="Senha"
                     type="password"
                     variant="outlined"
                     fullWidth
@@ -48,8 +51,9 @@ const SignIn = () => {
             <TypographyComponent
                 variant="body2"
                 style={{ marginTop: "15px", color: "#007BFF", cursor: "pointer" }}
+                onClick={() => navigate("/signup")}
             >
-                Forgot your password?
+                Não tem uma conta? Registre-se
             </TypographyComponent>
         </ContainerComponent>
     );
