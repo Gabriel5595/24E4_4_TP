@@ -1,33 +1,113 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
+import AlertComponent from './components/alert';
+import GridComponent from './components/grid';
+import SnackbarComponent from './components/snackBar';
+import { useTranslation } from 'react-i18next';
+import { createClient } from '@supabase/supabase-js';
+import { ThemeProvider, useMediaQuery } from '@mui/material';
+import { darkTheme, lightTheme } from './theme.js';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import './i18n';
 
-//Cria um contexto
-const AppContext = createContext();
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(duration);
 
-//Aqui são adicionadas os estados, funções e retornos visuais (se necessários) globais.
+const AppContext = createContext(null);
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
+
 const AppProvider = ({ children }) => {
-    
-    //States
-    const [state, setState] = useState("Valor inicial");
+    const { t: translate, i18n } = useTranslation();
+    const timeoutDuration = 6000;
+    const isDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-    //Funções
-    const updateState = (newValue) => {
-        setState(newValue);
-    };
+    const [snackOpen, setSnackOpen] = useState(false);
+    const [snackMessage, setSnackMessage] = useState("");
 
-    //Lista de funçÕes de transformação de estado
-    const sharedState = {
-        updateState,
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertSeverity, setAlertSeverity] = useState("");
+    const [alertVariant, setAlertVariant] = useState(null);
+
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+        localStorage.setItem("language", lang);
     }
 
-    //Retornos
+    const showSnackMessage = (message) => {
+        setSnackMessage(message);
+        setSnackOpen(true);
+    }
+
+    const showAlertMessage = (message, severity, variant) => {
+        setAlertMessage(message);
+        setAlertSeverity(severity);
+        setAlertVariant(variant);
+
+        setTimeout(() => {
+            setAlertMessage("");
+        }, timeoutDuration);
+    }
+
+    const handleClose = () => {
+        setSnackMessage("");
+        setSnackOpen(false);
+    }
+
+    const sharedState = {
+        changeLanguage,
+        showSnackMessage,
+        showAlertMessage,
+        translate,
+        supabase
+    };
+
+    useEffect(() => {
+        const storeLanguage = localStorage.getItem("language");
+
+        if (storeLanguage) {
+            changeLanguage(storeLanguage);
+        } else {
+            const navLang = navigator.language.split("-")[0];
+            changeLanguage(navLang);
+        }
+    }, [])
+
     return (
-        <AppContext.Provider value={sharedState}>
-            {children}
-        </AppContext.Provider>
+        <div className="app-background">
+            <AppContext.Provider value={sharedState}>
+                <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+                    {children}
+                    <SnackbarComponent
+                        autoHideDuration={timeoutDuration}
+                        onClose={handleClose}
+                        open={snackOpen}
+                        message={snackMessage}
+                    />
+                    {alertMessage
+                        ? <GridComponent container={true}
+                            sx={{
+                                position: 'absolute',
+                                left: 0,
+                                bottom: 0,
+                                width: '100%',
+                                padding: 2
+                            }}
+                        >
+                            <GridComponent item={true} size={{ xs: 12 }}>
+                                <AlertComponent variant={alertVariant} severity={alertSeverity}>{alertMessage}</AlertComponent>
+                            </GridComponent>
+                        </GridComponent>
+                        : null}
+                </ThemeProvider>
+            </AppContext.Provider>
+        </div>
     );
 };
 
-//Aqui é onde o context exporta todo o seu conteúdo.
 export const useAppContext = () => {
     const context = useContext(AppContext);
     if (context === null) {

@@ -1,15 +1,44 @@
-import { redirect } from "react-router-dom";
+import { Navigate, redirect } from "react-router-dom";
 
-export function isAuthenticated() {
-    const token = localStorage.getItem("token");
+const isAuthenticated = () => {
+    const session = localStorage.getItem("session");
 
-    if (token) throw redirect("/");
+    if (session) throw redirect("/");
     return null;
 }
 
-export function handleVerificationProtected() {
-    const token = localStorage.getItem("token");
+const handleVerificationProtected = () => {
+    const session = localStorage.getItem("session");
 
-    if (!token) throw redirect("/signin");
+    if (!session) throw redirect("/signin");
     return null;
+}
+
+const signIn = async (email, password, supabase) => {
+    return await supabase.auth.signInWithPassword({
+        email, password
+    });
+}
+
+const signUp = async (email, password, supabase) => {
+    return await supabase.auth.signUp({
+        email, password
+    });
+}
+
+const signOut = async (supabase, navigate) => {
+    localStorage.removeItem("session");
+    localStorage.removeItem("user");
+
+    supabase.auth.signOut();
+
+    return navigate("/signin")
+}
+
+export {
+    isAuthenticated,
+    handleVerificationProtected,
+    signIn,
+    signUp,
+    signOut
 }
